@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Historia de Nicaragua para Niños</title>
+  <!-- Fuente amigable -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #fff8ef;
+      --text: #263238;
+      --primary: #00A2FF;   /* azul alegre */
+      --secondary: #FF8A00; /* naranja cálido */
+      --accent: #00C853;    /* verde vivo */
+      --pink: #FF4DA6;      /* rosa */
+      --card: #ffffff;
+      --shadow: 0 10px 20px rgba(0,0,0,.08);
+    }
+    *{box-sizing: border-box}
+    body{
+      margin:0; background: var(--bg); color: var(--text);
+      font-family: "Baloo 2", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      line-height:1.5; font-size: 18px;
+    }
+    header{
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white; padding: 28px 16px 18px; position: relative; overflow: hidden;
+    }
+    header::after{
+      content:""; position:absolute; inset: -40px -40px auto auto; width: 220px; height: 220px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 60%);
+      border-radius: 50%; transform: rotate(25deg);
+    }
+    .wrap{max-width: 1000px; margin: 0 auto; padding: 16px}
+    h1{margin:0; font-size: clamp(28px, 6vw, 46px); letter-spacing:.5px}
+    .subtitle{margin-top:4px; font-size: clamp(16px, 2.5vw, 22px); opacity:.95}
+    .grid{
+      display:grid; gap:16px; grid-template-columns: 1fr; margin-top:18px
+    }
+    @media (min-width: 900px){
+      .grid{grid-template-columns: 2fr 1fr}
+    }
+    .card{
+      background: var(--card); border-radius: 18px; padding: 16px; box-shadow: var(--shadow);
+    }
+    h2.section{font-size: 26px; margin: 4px 0 10px; display:flex; align-items:center; gap:10px}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;
+      background:#e6f6ff; color:#006494; font-size: 14px; margin: 0 6px 6px 0; box-shadow: 0 4px 10px rgba(0,0,0,.06)
+    }
+    .legend{display:flex; flex-wrap:wrap}
+
+    /* Línea de tiempo */
+    .timeline{position:relative; margin: 8px 0 4px; padding-left: 8px}
+    .timeline::before{
+      content:""; position:absolute; left: 16px; top:0; bottom:0; width:6px; border-radius:6px; background: linear-gradient(180deg, var(--primary), var(--accent));
+    }
+    .event{
+      position: relative; margin: 14px 0 16px 0; padding-left: 56px; min-height: 56px;
+    }
+    .event .dot{
+      position:absolute; left: 4px; top: 4px; width: 26px; height: 26px; border-radius:50%;
+      background: white; border: 6px solid var(--secondary); box-shadow: var(--shadow);
+      display:grid; place-items:center; font-size: 16px;
+    }
+    .event .content{
+      background: #fefefe; border-radius: 14px; padding: 12px 14px; box-shadow: var(--shadow)
+    }
+    .event h3{margin:0 0 4px; font-size: 20px}
+    .event .when{font-size: 14px; opacity:.7}
+
+    .facts li{margin: 6px 0}
+    .facts strong{color: #0b7a2e}
+
+    .flag{
+      display:flex; width: 150px; height: 90px; border-radius: 10px; overflow:hidden; border:2px solid rgba(0,0,0,.1)
+    }
+    .flag > div:nth-child(1), .flag > div:nth-child(3){flex:1; background:#0067C6}
+    .flag > div:nth-child(2){flex:1; background:#ffffff; display:grid; place-items:center; font-size: 20px}
+
+    .fun{
+      display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    }
+    .fun .mini{
+      background: #fff; border-left: 10px solid var(--pink); border-radius: 12px; padding: 12px 14px;
+      box-shadow: var(--shadow)
+    }
+
+    /* Botones */
+    .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
+    button{
+      cursor:pointer; border:none; border-radius: 999px; padding: 10px 14px; font-weight: 700;
+      box-shadow: var(--shadow); background: var(--accent); color:white; font-size: 16px;
+    }
+    button.secondary{background: var(--primary)}
+
+    /* Quiz */
+    .quiz{margin-top: 10px}
+    .q{background:#fff; border-radius: 12px; box-shadow: var(--shadow); padding: 12px 14px; margin: 10px 0}
+    .q h4{margin:0 0 6px}
+    .answer{display:none; margin-top:6px; background:#f3fff6; border-left:6px solid var(--accent); padding: 8px 10px; border-radius: 8px}
+
+    footer{padding: 20px; text-align:center; opacity:.8}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Historia de Nicaragua <span aria-hidden="true">🇳🇮</span></h1>
+      <p class="subtitle">Un recorrido breve y colorido para niñas y niños de primaria</p>
+      <div class="actions">
+        <button id="btnImprimir" title="Imprimir o guardar en PDF">🖨️ Imprimir</button>
+        <button class="secondary" id="btnModoLectura" title="Mejorar contraste">🌓 Modo lectura</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap grid">
+    <section class="card">
+      <h2 class="section">🗺️ Panorama rápido</h2>
+      <div class="legend">
+        <span class="chip">Capital: Managua</span>
+        <span class="chip">Moneda: Córdoba (C$)</span>
+        <span class="chip">Idiomas: Español y lenguas indígenas</span>
+        <span class="chip">Lagos: Xolotlán y Cocibolca</span>
+      </div>
+
+      <div class="timeline" aria-label="Línea de tiempo de la historia de Nicaragua">
+        <article class="event">
+          <div class="dot" aria-hidden="true">🏞️</div>
+          <div class="content">
+            <h3>Antes de 1502 <span class="when">(Época precolombina)</span></h3>
+            <p>Pueblos indígenas (chorotegas, nicaraos, ramas, miskitos y otros) vivían de la agricultura, la pesca y el comercio. Tenían sus propios jefes y tradiciones.</p>
+          </div>
+        </article>
+        <article class="event">
+          <div class="dot" aria-hidden="true">⛵</div>
+          <div class="content">
+            <h3>1502–1821 <span class="when">(Conquista y colonia)</span></h3>
+            <p>Con la llegada de europeos empezó la colonización. Se fundaron ciudades, se explotaron recursos y cambió la vida de los pueblos originarios.</p>
+          </div>
+        </article>
+        <article class="event">
+          <div class="dot" aria-hidden="true">🎉</div>
+          <div class="content">
+            <h3>1821 <span class="when">Independencia de Centroamérica</span></h3>
+            <p>El 15 de septiembre Nicaragua proclamó su independencia junto con otras provincias centroamericanas.</p>
+          </div>
+        </article>
+        <article class="event">
+          <div class="dot" aria-hidden="true">🤝</div>
+          <div class="content">
+            <h3>1822–1838 <span class="when">Uniones y separación</span></h3>
+            <p>Hubo unión al Imperio Mexicano y luego a la Federación Centroamericana. Finalmente, Nicaragua se constituyó como república independiente.</p>
+          </div>
+        </article>
+        <article class="event">
+          <div class="dot" aria-hidden="true">🚂</div>
+          <div class="content">
+            <h3>Siglo XIX <span class="when">(1838–1900)</span></h3>
+            <p>Se formó el Estado nicaragüense, con disputas internas y proyectos de modernización. La figura de <em>Rubén Darío</em> destacó en la cultura (fin de siglo).</p>
+          </div>
+        </article>
+        <article class="event">
+          <div class="dot" aria-hidden="true">🕊️</div>
+          <div class="content">
+            <h3>1912–1934 <span class="when">Intervenciones y Sandino</span></h3>
+            <p>Hubo presencia militar extranjera y surgió la lucha de <em>Augusto C. Sandino</em> por la soberanía.</p>
+          </div>
+        </article>
+        <article class="event">
+          <div class="dot" aria-hidden="true">🏛️</div>
+          <div class="content">
+            <h3>1936–1979 <span class="when">Período de los Somoza</span></h3>
+            <p>Una familia gobernó por décadas. Ocurrió el terremoto de Managua de 1972, que marcó a la población.</p>
+          </div>
+        </article>
+        <article class="event">
+          <div class="dot" aria-hidden="true">🕯️</div>
+          <div class="content">
+            <h3>Desde 1979 <span class="when">Cambios y desafíos</span></h3>
+            <p>Hubo una revolución, conflictos, procesos electorales y transformaciones sociales. Hoy el país sigue construyendo su futuro.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="fun" aria-label="Datos curiosos y símbolos patrios">
+        <div class="mini"><strong>🇳🇮 Bandera y Escudo:</strong> azul, blanco y azul. El escudo muestra cinco volcanes, un gorro frigio y un arcoíris.</div>
+        <div class="mini"><strong>🌸 Flor nacional:</strong> Sacuanjoche.</div>
+        <div class="mini"><strong>🐦 Ave nacional:</strong> Guardabarranco.</div>
+        <div class="mini"><strong>🌳 Árbol nacional:</strong> Madroño.</div>
+        <div class="mini"><strong>🔥 Volcanes:</strong> Entre ellos el Momotombo, el Masaya y el Concepción.</div>
+        <div class="mini"><strong>💧 Grandes lagos:</strong> Xolotlán (Managua) y Cocibolca (Nicaragua).</div>
+      </div>
+
+      <div class="q" role="group" aria-labelledby="resumen">
+        <h4 id="resumen">Resumen en una frase</h4>
+        <p><em>Nicaragua pasó de pueblos originarios a colonia, logró su independencia en 1821 y, con muchos cambios políticos y sociales, continúa construyendo su historia.</em></p>
+      </div>
+    </section>
+
+    <aside class="card">
+      <h2 class="section">🚀 ¡Explora!</h2>
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px">
+        <div class="flag" aria-label="Bandera de Nicaragua">
+          <div></div>
+          <div>🔺</div>
+          <div></div>
+        </div>
+        <p style="margin:0">Usa esta mini guía en clase o en casa. ¡También puedes imprimirla!</p>
+      </div>
+
+      <ul class="facts">
+        <li>🧭 <strong>Ubicación:</strong> Centroamérica, entre Honduras y Costa Rica, con costas en el Pacífico y el Caribe.</li>
+        <li>👨‍👩‍👧‍👦 <strong>Población:</strong> Diversa, con herencias indígenas, europeas y afrodescendientes.</li>
+        <li>🎭 <strong>Cultura:</strong> Riqueza en poesía, música, bailes y gastronomía (¡gallo pinto, vigorón, nacatamal!).</li>
+        <li>📅 <strong>Fechas clave:</strong> 15 de septiembre (Independencia), 14 de septiembre (Batalla de San Jacinto).</li>
+      </ul>
+
+      <div class="quiz" aria-label="Pequeño cuestionario">
+        <div class="q">
+          <h4>Mini-Quiz</h4>
+          <ol>
+            <li>¿En qué año se proclamó la independencia de Centroamérica?</li>
+            <li>Nombra un símbolo patrio de Nicaragua.</li>
+            <li>Menciona un volcán famoso del país.</li>
+          </ol>
+          <button id="btnRespuestas">Mostrar respuestas</button>
+          <div id="answers" class="answer">
+            <ul>
+              <li><strong>1821</strong>.</li>
+              <li>Ejemplos: <em>Sacuanjoche</em> (flor), <em>Guardabarranco</em> (ave), <em>Madroño</em> (árbol), Bandera o Escudo.</li>
+              <li>Ejemplos: <em>Momotombo</em>, <em>Masaya</em>, <em>Concepción</em>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="q">
+          <h4>Actividad</h4>
+          <p>Dibuja una línea de tiempo con <strong>4 momentos</strong> de la historia de Nicaragua y agrega un dibujo para cada uno.</p>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <small>Recurso educativo de resumen histórico. Diseñado para primaria. Puedes adaptarlo libremente para tu clase. ✨</small>
+  </footer>
+
+  <script>
+    const btnImp = document.getElementById('btnImprimir');
+    const btnModo = document.getElementById('btnModoLectura');
+    const btnAns = document.getElementById('btnRespuestas');
+    btnImp?.addEventListener('click', () => window.print());
+
+    let dark = false;
+    btnModo?.addEventListener('click', () => {
+      dark = !dark;
+      document.documentElement.style.setProperty('--bg', dark ? '#111827' : '#fff8ef');
+      document.documentElement.style.setProperty('--text', dark ? '#F9FAFB' : '#263238');
+      document.documentElement.style.setProperty('--card', dark ? '#1f2937' : '#ffffff');
+    });
+
+    btnAns?.addEventListener('click', () => {
+      const ans = document.getElementById('answers');
+      if(ans){
+        const isShown = ans.style.display === 'block';
+        ans.style.display = isShown ? 'none' : 'block';
+        btnAns.textContent = isShown ? 'Mostrar respuestas' : 'Ocultar respuestas';
+      }
+    });
+  </script>
+</body>
+</html>
